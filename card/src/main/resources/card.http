@@ -1,0 +1,13 @@
+### Create card
+POST localhost:8082/api/v1/card
+Content-Type: application/json
+
+{
+  "phoneNumber": "998910171231",
+  "amount": 5600,
+  "ownerId": "d45dd6d8-3ffe-49e0-904a-8a553de5afad"
+}
+
+### Get card list by phoneNumber
+GET localhost:8082/api/v1/card/phone/998910171231
+correlation-id: "asdasdas"

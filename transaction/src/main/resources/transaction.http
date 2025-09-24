@@ -1,0 +1,13 @@
+### Using Gateway  - Get Transction by id
+GET localhost:8072/api/v1/transaction/dasdasdasdas
+
+
+### Encrypt
+POST http://localhost:8071/encrypt
+Content-Type: text/plain
+
+my top secret value to be encrypted
+
+
+### Using Gateway  - Get message
+GET localhost:8072/api/v1/transaction/message

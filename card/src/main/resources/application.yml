@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: "card"
+  profiles:
+    active: "dev"
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: "123"
+  jpa:
+    hibernate.ddl-auto: "update"
+    show-sql: true
+
+server:
+  port: 8082
+  url: "http://localhost:${server.port}"
+  version: "1.0"
+accounts:
+  message: "Card server message 1234"
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+
