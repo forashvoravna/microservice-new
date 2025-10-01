@@ -3,7 +3,7 @@ POST localhost:8084/api/v1/notification
 Content-Type: application/json
 
 {
-  "phoneNumber": "998910171231",
+  "phoneNumber": "998910171212",
   "message": "Test notification 2"
 }
 

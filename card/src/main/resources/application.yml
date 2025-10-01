@@ -4,12 +4,13 @@ spring:
   profiles:
     active: "dev"
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres"
-    username: "postgres"
-    password: "123"
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123
   jpa:
     hibernate.ddl-auto: "update"
     show-sql: true
+    open-in-view: true
 
 server:
   port: 8082
@@ -28,4 +29,26 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8070/eureka/
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: "card"
+    description: "Codeuz microservice card application"
+    version: "1.0.0"
 

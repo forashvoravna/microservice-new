@@ -2,10 +2,12 @@ package dasturlash.uz.card.service;
 
 import dasturlash.uz.card.dto.CardCreateDTO;
 import dasturlash.uz.card.dto.CardDTO;
+import dasturlash.uz.card.dto.transaction.TransactionDTO;
 import dasturlash.uz.card.entity.CardEntity;
 import dasturlash.uz.card.enums.CardStatus;
 import dasturlash.uz.card.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,11 +15,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 @Service
 public class CardService {
 
     @Autowired
     private CardRepository cardRepository;
+    @Autowired
+    private TransactionFeignClient transactionFeignClient;
 
     public CardDTO createCard(CardCreateDTO createDTO) {
         CardEntity card = new CardEntity();
@@ -54,7 +59,12 @@ public class CardService {
     public List<CardDTO> getCardsByPhoneNumber(String phoneNumber) {
         return cardRepository.findByPhoneNumber(phoneNumber)
                 .stream()
-                .map(this::convertToDTO)
+                .map(entity -> {
+                    CardDTO dto = convertToDTO(entity);
+                    ResponseEntity<List<TransactionDTO>> response = transactionFeignClient.getTransactionsByCardId(entity.getId());
+                    dto.setTransactionList(response.getBody());
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 

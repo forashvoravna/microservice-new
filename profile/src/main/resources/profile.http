@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "name": "Toshmat",
   "surname": "Toshmatov",
-  "phoneNumber": "998910171231",
+  "phoneNumber": "998910171212",
   "password": "123456",
   "roleList": ["ROLE_ADMIN","ROLE_ADMIN"]
 
@@ -17,8 +17,8 @@ GET localhost:8072/api/v1/profile/pagination
 
 
 ### Profile detail
-GET localhost:8081/api/v1/profile/c36fc968-08e0-4927-b13d-43793eb6dd34/detail
-correlation-id: "dasda"
+GET localhost:8081/api/v1/profile/dfd43779-afd4-4c73-9ebd-4b233aec641e/detail
+
 
 ### Using Gateway - Profile detail
 GET localhost:8072/profile/api/v1/profile/c36fc968-08e0-4927-b13d-43793eb6dd34/detail

@@ -2,14 +2,12 @@ spring:
   application:
     name: "transaction"
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres"
-    username: "postgres"
-    password: "123"
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123
   jpa:
     hibernate.ddl-auto: "update"
     show-sql: true
-  config:
-    import: "optional:configserver:http://localhost:8071/"
   profiles:
     active: "dev"
 server:
@@ -46,7 +44,7 @@ eureka:
     fetchRegistry: true
     registerWithEureka: true
     serviceUrl:
-      defaultZone: http://localhost:8070/eureka/
+      defaultZone: "http://localhost:8070/eureka"
 
 info:
   app:

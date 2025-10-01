@@ -3,9 +3,9 @@ POST localhost:8082/api/v1/card
 Content-Type: application/json
 
 {
-  "phoneNumber": "998910171231",
-  "amount": 5600,
-  "ownerId": "d45dd6d8-3ffe-49e0-904a-8a553de5afad"
+  "phoneNumber": "998910171212",
+  "amount": 5700,
+  "ownerId": "dfd43779-afd4-4c73-9ebd-4b233aec641e"
 }
 
 ### Get card list by phoneNumber

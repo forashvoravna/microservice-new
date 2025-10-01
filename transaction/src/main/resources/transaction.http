@@ -1,3 +1,15 @@
+POST http://localhost:8083/api/v1/transaction
+Content-Type: application/json
+
+{
+  "fromCardId": "aa76360f-0fdb-4fa9-8fe9-a4b63064a8e8",
+  "toCardId": "fa459a9f-2013-42dc-b06a-02dad3a7bcc6",
+  "amount": "400"
+}
+
+
+
+
 ### Using Gateway  - Get Transction by id
 GET localhost:8072/api/v1/transaction/dasdasdasdas
 

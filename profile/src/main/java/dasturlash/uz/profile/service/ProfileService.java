@@ -27,6 +27,10 @@ public class ProfileService {
     private ProfileRoleService profileRoleService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private CardFeignClient cardFeignClient;
+    @Autowired
+    private NotificationFeignClient notificationFeignClient;
 
     public ProfileDTO create(ProfileDTO profile) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneNumberAndVisibleIsTrue(profile.getPhoneNumber());
@@ -186,8 +190,11 @@ public class ProfileService {
         dto.setSurname(entity.getSurname());
         dto.setPhoneNumber(entity.getPhoneNumber());
         // set card list
-
+        ResponseEntity<List<CardDTO>> cardResponse = cardFeignClient.getCardsByPhoneNumber(entity.getPhoneNumber());
+        dto.setCardList(cardResponse.getBody());
         // set notification list
+        ResponseEntity<List<NotificationDTO>> notificationResponse = notificationFeignClient.getNotificationsByPhoneNumber("1234", entity.getPhoneNumber());
+        dto.setNotificationList(notificationResponse.getBody());
 
         return dto;
     }

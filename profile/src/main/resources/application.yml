@@ -2,23 +2,30 @@ spring:
   application:
     name: "profile"
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres"
-    username: "postgres"
-    password: "123"
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123
   jpa:
     hibernate.ddl-auto: "update"
     show-sql: true
   profiles:
     active: "dev"
   cloud:
+    loadbalancer:
+      retry:
+        enabled: true
     openfeign:
       circuitbreaker:
         enabled: true
+
 server:
   port: 8081
   url: "http://localhost:${server.port}"
 accounts:
   message: "Card server message 1234"
+
+
+
 eureka:
   instance:
     preferIpAddress: true
@@ -27,3 +34,29 @@ eureka:
     registerWithEureka: true
     serviceUrl:
       defaultZone: http://localhost:8070/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  info:
+    env:
+      enabled: true
+
+
+
+info:
+  app:
+    name: "profile"
+    description: "Codeuz microservice profile application"
+    version: "1.0.0"
